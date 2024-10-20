@@ -8,7 +8,7 @@ export default async function Questions() {
     );
     const data = JSON.parse(tempDb);
     return (
-        <div className="max-w-3xl mx-auto">
+        <div className="flex flex-col gap-2 max-w-3xl mx-auto">
             {data.map((q) => (
                 <Question
                     key={q.question}
