@@ -12,7 +12,7 @@ export default function Question({ question, answer }: TQuestionProps) {
     return (
         <div>
             <p>{question}</p>
-            <p>{answer}</p>
+            {isOpened && <p>{answer}</p>}
         </div>
     );
 }

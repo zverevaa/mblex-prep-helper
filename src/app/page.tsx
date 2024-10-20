@@ -1,3 +1,9 @@
+import Questions from "@/components/questions";
+
 export default function Home() {
-    return <div>Hello world</div>;
+    return (
+        <div>
+            <Questions />
+        </div>
+    );
 }
