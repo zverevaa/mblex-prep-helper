@@ -1,16 +1,18 @@
-import React, { ReactElement } from "react";
-import { promises as fs } from "fs";
-import { TQuestion } from "@/lib/types";
+import { MblxQuestions } from "@prisma/client";
+import Question from "./question";
+import { getQuestions } from "@/lib/server-utils";
 
 type TDataFetcherProps = {
-    children: ReactElement;
+    amount: number;
 };
 
-export default async function DataFetcher({ children }: TDataFetcherProps) {
-    const tempDb = await fs.readFile(
-        process.cwd() + "/src/lib/tempdb.json",
-        "utf8"
+export default async function DataFetcher({ amount }: TDataFetcherProps) {
+    const questions: MblxQuestions[] = await getQuestions(amount);
+    return (
+        <div>
+            {questions.map((q) => (
+                <Question key={q.id} question={q.question} answer={q.answer} />
+            ))}
+        </div>
     );
-    const data: TQuestion[] = JSON.parse(tempDb);
-    return <>{React.cloneElement(children, { data: data })}</>;
 }
