@@ -1,6 +1,7 @@
 "use client";
 
 import { addQuestion } from "@/lib/server-utils";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
 export default function NewQuestionForm() {
@@ -8,6 +9,7 @@ export default function NewQuestionForm() {
         "rounded-md border-1  py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6";
     const formRef = useRef<HTMLFormElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
+    const router = useRouter();
     return (
         <div className="flex justify-center">
             <form
@@ -16,6 +18,7 @@ export default function NewQuestionForm() {
                     addQuestion(formData);
                     formRef.current?.reset();
                     inputRef.current?.focus();
+                    router.refresh();
                 }}
                 autoComplete="off"
                 className="flex flex-col gap-3 max-w-screen-lg min-w-96"
