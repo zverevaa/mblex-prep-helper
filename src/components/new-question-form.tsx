@@ -6,20 +6,24 @@ import { useRef } from "react";
 export default function NewQuestionForm() {
     const inputClasses =
         "rounded-md border-1  py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6";
-    const ref = useRef<HTMLFormElement>(null);
+    const formRef = useRef<HTMLFormElement | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
     return (
         <div className="flex justify-center">
             <form
-                ref={ref}
+                ref={formRef}
                 action={(formData) => {
                     addQuestion(formData);
-                    ref.current?.reset();
+                    formRef.current?.reset();
+                    inputRef.current?.focus();
                 }}
+                autoComplete="off"
                 className="flex flex-col gap-3 max-w-screen-lg min-w-96"
             >
                 <div className="flex flex-col gap-1">
                     <label htmlFor="question">Question</label>
                     <input
+                        ref={inputRef}
                         id="question"
                         name="question"
                         type="text"
