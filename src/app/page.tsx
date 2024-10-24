@@ -1,6 +1,9 @@
-import Header from "@/components/header";
 import Questions from "@/components/questions";
 
 export default function Home() {
-    return <Questions />;
+    return (
+        <div className="px-2 pb-2">
+            <Questions />
+        </div>
+    );
 }
