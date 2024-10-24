@@ -8,7 +8,7 @@ type TAddPageProps = {
 export default async function page({ searchParams }: TAddPageProps) {
     console.log(searchParams.page);
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col gap-8 items-center">
             <NewQuestionForm />
             <DatabaseList page={Number(searchParams.page) || 1} />
         </div>
