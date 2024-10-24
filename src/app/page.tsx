@@ -1,4 +1,3 @@
-import DataFetcher from "@/components/data-fetcher";
 import Questions from "@/components/questions";
 
 export default function Home() {

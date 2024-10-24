@@ -1,11 +1,16 @@
-import DbList from "@/components/database-list";
+import DatabaseList from "@/components/database-list";
 import NewQuestionForm from "@/components/new-question-form";
 
-export default async function page() {
+type TAddPageProps = {
+    searchParams: { search?: string; page?: string };
+};
+
+export default async function page({ searchParams }: TAddPageProps) {
+    console.log(searchParams.page);
     return (
         <div className="flex flex-col items-center">
             <NewQuestionForm />
-            <DbList />
+            <DatabaseList page={Number(searchParams.page) || 1} />
         </div>
     );
 }
