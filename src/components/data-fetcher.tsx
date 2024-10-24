@@ -9,7 +9,7 @@ type TDataFetcherProps = {
 export default async function DataFetcher({ amount }: TDataFetcherProps) {
     const questions: MblxQuestions[] = await getQuestions(amount);
     return (
-        <div>
+        <div className="flex flex-col gap-2">
             {questions.map((q) => (
                 <Question key={q.id} question={q.question} answer={q.answer} />
             ))}
