@@ -8,10 +8,10 @@ type TDatabaseTableProps = {
 export default async function DatabaseTable({
     questions,
 }: TDatabaseTableProps) {
-    const cellStyles = "border-indigo-300 border-[1px] p-3";
+    const cellStyles = "border-purple-300 border-[1px] p-3";
 
     return (
-        <table className="table-auto border-indigo-100 border-1">
+        <table className="table-auto border-purple-100 border-1">
             <thead>
                 <tr>
                     <th className={cellStyles}>Id</th>

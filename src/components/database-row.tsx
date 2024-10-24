@@ -67,7 +67,7 @@ export default function DatabaseRow({
     }, [isEditable]);
 
     return (
-        <tr className="even:bg-indigo-50" key={question.id}>
+        <tr className="even:bg-purple-50" key={question.id}>
             <td className={`${cellStyles} text-center`}>{question.id}</td>
             <td className={cellStyles}>
                 {isEditable ? (
