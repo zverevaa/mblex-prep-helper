@@ -1,6 +1,7 @@
 import { MblxQuestions } from "@prisma/client";
 import Question from "./question";
 import { getQuestions } from "@/lib/server-utils";
+import ButtonWrapper from "./button-wrapper";
 
 type TDataFetcherProps = {
     amount: number;
@@ -13,6 +14,7 @@ export default async function DataFetcher({ amount }: TDataFetcherProps) {
             {questions.map((q) => (
                 <Question key={q.id} question={q.question} answer={q.answer} />
             ))}
+            <ButtonWrapper />
         </div>
     );
 }
