@@ -67,22 +67,27 @@ export default function DatabaseRow({
     }, [isEditable]);
 
     return (
-        <tr className="even:bg-purple-50" key={question.id}>
-            <td className={`${cellStyles} text-center`}>{question.id}</td>
-            <td className={cellStyles}>
+        <tr
+            className="even:bg-purple-50/50 odd:bg-purple-100/75 border-2 border-purple-200"
+            key={question.id}
+        >
+            <td className={`${cellStyles} text-center font-bold `}>
+                {question.id}
+            </td>
+            <td className={`${cellStyles} text-lg`}>
                 {isEditable ? (
                     <textarea
                         ref={setRef("question")}
                         rows={rows}
                         spellCheck={false}
-                        className="w-full h-full resize-none bg-inherit border-0 focus:border-0 focus:outline-none "
+                        className="w-full h-full resize-none bg-inherit border-0 focus:border-0 focus:outline-none"
                         defaultValue={question.question}
                     ></textarea>
                 ) : (
                     question.question
                 )}
             </td>
-            <td className={`${cellStyles} max-w-44`}>
+            <td className={`${cellStyles} lg:max-w-44`}>
                 {isEditable ? (
                     <textarea
                         ref={setRef("answer")}
@@ -95,13 +100,16 @@ export default function DatabaseRow({
                     question.answer
                 )}
             </td>
-            <td className={cellStyles}>
-                <Button onClick={handleInput} color={`bg-green-100`}>
+            <td className={`${cellStyles} flex justify-center`}>
+                <Button
+                    onClick={handleInput}
+                    color={`bg-green-100 w-32 lg:w-auto`}
+                >
                     <Pencil1Icon />
                 </Button>
             </td>
-            <td className={cellStyles}>
-                <Button color={`bg-red-100`}>
+            <td className={`${cellStyles} lg:flex justify-center hidden`}>
+                <Button color={`bg-red-100 w-32 lg:w-auto`}>
                     <TrashIcon />
                 </Button>
             </td>

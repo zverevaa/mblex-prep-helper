@@ -8,11 +8,12 @@ type TDatabaseTableProps = {
 export default async function DatabaseTable({
     questions,
 }: TDatabaseTableProps) {
-    const cellStyles = "border-purple-300 border-[1px] p-3";
+    const cellStyles =
+        "block lg:table-cell border-purple-300 border-0 py-2 px-4 lg:p-3";
 
     return (
-        <table className="table-auto border-purple-100 border-1">
-            <thead>
+        <table className=" lg:border-collapse border-spacing-y-4 lg:border-spacing-0 lg:rounded-md">
+            <thead className="hidden lg:table-row-group bg-purple-200">
                 <tr>
                     <th className={cellStyles}>Id</th>
                     <th className={cellStyles}>Question</th>

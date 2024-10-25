@@ -9,7 +9,7 @@ type TButtonProps = {
 export default function Button({ children, onClick, color }: TButtonProps) {
     return (
         <button
-            className={`${color} p-2 rounded-md border-[1px] border-purple-300 w-full h-full`}
+            className={`${color} flex justify-center items-center text-center p-2 rounded-md border-[1px] border-purple-300 w-full h-full`}
             onClick={onClick}
         >
             {children}
