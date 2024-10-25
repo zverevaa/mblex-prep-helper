@@ -3,10 +3,11 @@
 import { addQuestion } from "@/lib/server-utils";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
+import Button from "./button";
 
 export default function NewQuestionForm() {
     const inputClasses =
-        "rounded-md border-1  py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6";
+        "rounded-md border-1  py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6";
     const formRef = useRef<HTMLFormElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const router = useRouter();
@@ -40,13 +41,13 @@ export default function NewQuestionForm() {
                         id="answer"
                         name="answer"
                         type="text"
-                        placeholder="Here goes the answer to the new question"
+                        placeholder="Here goes the answer"
                         className={inputClasses}
                     ></input>
                 </div>
-                <button className="py-2 px-5 rounded-md self-end bg-indigo-100">
+                <Button color="h-24 lg:w-32 lg:h-12 self-end bg-purple-300 font-bold">
                     Submit
-                </button>
+                </Button>
             </form>
         </div>
     );
