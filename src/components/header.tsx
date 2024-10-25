@@ -7,7 +7,9 @@ export default function Header() {
             <Link href="/">
                 <h1 className="text-2xl font-bold">MBLEX PREP</h1>
             </Link>
-            <Link href="/add">Storage</Link>
+            <Link className="font-bold" href="/add">
+                Storage
+            </Link>
         </header>
     );
 }

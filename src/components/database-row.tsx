@@ -13,13 +13,9 @@ type Refs = {
 
 type TDatabaseRowProps = {
     question: MblxQuestions;
-    cellStyles: string;
 };
 
-export default function DatabaseRow({
-    question,
-    cellStyles,
-}: TDatabaseRowProps) {
+export default function DatabaseRow({ question }: TDatabaseRowProps) {
     const [isEditable, setIsEditable] = useState(false);
     const [rows, setRows] = useState(1);
     const textareaRefs = useRef<Refs>({});
@@ -67,15 +63,13 @@ export default function DatabaseRow({
     }, [isEditable]);
 
     return (
-        <tr
-            className="even:bg-purple-50/50 odd:bg-purple-100/75 border-2 border-purple-400"
-            key={question.id}
-        >
-            <td className={`${cellStyles} text-center font-bold `}>
+        <div className="flex flex-col lg:flex-row lg:items-center px-3 even:bg-purple-200 odd:bg-purple-100 basis-12 w-full border-2 border-purple-400 rounded-md">
+            <div className="flex items-center justify-center basis-12 p-2 font-bold">
                 {question.id}
-            </td>
-            <td className={`${cellStyles} text-lg lg:text-base`}>
-                <p className="text-base lg:hidden font-bold">Question: </p>
+            </div>
+
+            <div className="lg:w-[65%] w-full p-2">
+                <p className="text-base lg:hidden font-bold">Question:</p>
                 {isEditable ? (
                     <textarea
                         ref={setRef("question")}
@@ -87,8 +81,8 @@ export default function DatabaseRow({
                 ) : (
                     question.question
                 )}
-            </td>
-            <td className={`${cellStyles} lg:max-w-44 text-lg lg:text-base`}>
+            </div>
+            <div className="lg:w-[35%] w-full p-2">
                 <p className="text-base lg:hidden font-bold">Answer:</p>
                 {isEditable ? (
                     <textarea
@@ -101,22 +95,24 @@ export default function DatabaseRow({
                 ) : (
                     question.answer
                 )}
-            </td>
-            <td className={`${cellStyles} flex justify-center`}>
+            </div>
+            <div className="flex justify-center items-center basis-16 p-2">
+                {" "}
                 <Button
                     onClick={handleInput}
-                    color={`bg-green-200 hover:bg-green-300 transition w-32 lg:w-auto`}
+                    color={`bg-green-200 hover:bg-green-300 transition w-32 lg:w-auto `}
                 >
                     <Pencil1Icon />
                 </Button>
-            </td>
-            <td className={`${cellStyles} lg:flex justify-center hidden`}>
+            </div>
+            <div className="lg:flex hidden justify-center items-center basis-16 p-2">
+                {" "}
                 <Button
                     color={`bg-red-200 hover:bg-red-300 transition w-32 lg:w-auto`}
                 >
                     <TrashIcon />
                 </Button>
-            </td>
-        </tr>
+            </div>
+        </div>
     );
 }

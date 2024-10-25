@@ -8,29 +8,20 @@ type TDatabaseTableProps = {
 export default async function DatabaseTable({
     questions,
 }: TDatabaseTableProps) {
-    const cellStyles =
-        "block lg:table-cell border-purple-300 border-0 py-2 px-4 lg:p-3";
-
     return (
-        <table className="lg:border-spacing-0 border-2 border-purple-400">
-            <thead className="hidden lg:table-row-group bg-purple-200">
-                <tr>
-                    <th className={cellStyles}>Id</th>
-                    <th className={cellStyles}>Question</th>
-                    <th className={cellStyles}>Answer</th>
-                    <th className={cellStyles}></th>
-                    <th className={cellStyles}></th>
-                </tr>
-            </thead>
-            <tbody>
+        <div className="flex flex-col gap-y-2 w-full">
+            <div className="lg:flex hidden px-3 bg-purple-300 w-full rounded-md items-center font-bold border-2 border-purple-400">
+                <div className="flex justify-center basis-12 p-2">Id</div>
+                <div className="w-[65%] p-2">Question</div>
+                <div className="w-[35%] p-2">Answer</div>
+                <div className="basis-16 p-2"></div>
+                <div className="basis-16 p-2"></div>
+            </div>
+            <div className="flex flex-col gap-2">
                 {questions.map((q) => (
-                    <DatabaseRow
-                        key={q.id}
-                        question={q}
-                        cellStyles={cellStyles}
-                    />
+                    <DatabaseRow key={q.id} question={q} />
                 ))}
-            </tbody>
-        </table>
+            </div>
+        </div>
     );
 }
