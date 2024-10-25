@@ -45,7 +45,7 @@ export default function NewQuestionForm() {
                         className={inputClasses}
                     ></input>
                 </div>
-                <Button color="h-24 lg:w-32 lg:h-12 self-end bg-purple-300 font-bold">
+                <Button color="h-24 lg:w-32 lg:h-12 self-end bg-purple-300/75 hover:bg-purple-300 transition font-bold">
                     Submit
                 </Button>
             </form>

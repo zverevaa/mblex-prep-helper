@@ -105,13 +105,15 @@ export default function DatabaseRow({
             <td className={`${cellStyles} flex justify-center`}>
                 <Button
                     onClick={handleInput}
-                    color={`bg-green-100 w-32 lg:w-auto`}
+                    color={`bg-green-200 hover:bg-green-300 transition w-32 lg:w-auto`}
                 >
                     <Pencil1Icon />
                 </Button>
             </td>
             <td className={`${cellStyles} lg:flex justify-center hidden`}>
-                <Button color={`bg-red-100 w-32 lg:w-auto`}>
+                <Button
+                    color={`bg-red-200 hover:bg-red-300 transition w-32 lg:w-auto`}
+                >
                     <TrashIcon />
                 </Button>
             </td>

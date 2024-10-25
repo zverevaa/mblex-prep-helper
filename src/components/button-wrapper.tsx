@@ -7,7 +7,10 @@ export default function ButtonWrapper() {
     const router = useRouter();
     return (
         <div className="font-bold h-24 lg:w-32 lg:h-14 lg:self-end">
-            <Button onClick={() => router.refresh()} color="bg-purple-300">
+            <Button
+                onClick={() => router.refresh()}
+                color="bg-purple-300/75 hover:bg-purple-300 transition"
+            >
                 New Set
             </Button>
         </div>
