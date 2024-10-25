@@ -7,7 +7,7 @@ import Button from "./button";
 
 export default function NewQuestionForm() {
     const inputClasses =
-        "rounded-md border-1  py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6";
+        "rounded-md border-1  py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-purple-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6";
     const formRef = useRef<HTMLFormElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const router = useRouter();
