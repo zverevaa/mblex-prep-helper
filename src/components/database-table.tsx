@@ -12,7 +12,7 @@ export default async function DatabaseTable({
         "block lg:table-cell border-purple-300 border-0 py-2 px-4 lg:p-3";
 
     return (
-        <table className="lg:border-spacing-0 border-separate border-2 border-purple-400 border-solid rounded-md overflow-hidden">
+        <table className="lg:border-spacing-0 border-2 border-purple-400">
             <thead className="hidden lg:table-row-group bg-purple-200">
                 <tr>
                     <th className={cellStyles}>Id</th>
