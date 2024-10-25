@@ -74,7 +74,8 @@ export default function DatabaseRow({
             <td className={`${cellStyles} text-center font-bold `}>
                 {question.id}
             </td>
-            <td className={`${cellStyles} text-lg`}>
+            <td className={`${cellStyles} text-lg lg:text-base`}>
+                <p className="text-base lg:hidden font-bold">Question: </p>
                 {isEditable ? (
                     <textarea
                         ref={setRef("question")}
@@ -87,7 +88,8 @@ export default function DatabaseRow({
                     question.question
                 )}
             </td>
-            <td className={`${cellStyles} lg:max-w-44`}>
+            <td className={`${cellStyles} lg:max-w-44 text-lg lg:text-base`}>
+                <p className="text-base lg:hidden font-bold">Answer:</p>
                 {isEditable ? (
                     <textarea
                         ref={setRef("answer")}
