@@ -68,7 +68,7 @@ export default function DatabaseRow({
 
     return (
         <tr
-            className="even:bg-purple-50/50 odd:bg-purple-100/75 border-2 border-purple-200"
+            className="even:bg-purple-50/50 odd:bg-purple-100/75 border-2 border-purple-400"
             key={question.id}
         >
             <td className={`${cellStyles} text-center font-bold `}>

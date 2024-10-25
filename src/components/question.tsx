@@ -13,7 +13,7 @@ export default function Question({ question, answer }: TQuestionProps) {
     return (
         <div
             onClick={() => setIsOpened((prev) => !prev)}
-            className={`flex flex-col p-3 rounded-md border-2 border-purple-950 hover:cursor-pointer hover:bg-purple-200 transition bg-purple-50  ${
+            className={`flex flex-col p-3 rounded-md border-2 border-purple-400 hover:cursor-pointer hover:bg-purple-200 transition bg-purple-50  ${
                 isOpened ? "my-1" : ""
             }`}
         >
