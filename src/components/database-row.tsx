@@ -3,9 +3,10 @@
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { useEffect, useRef, useState } from "react";
 import Button from "./button";
-import { updateQuestion } from "@/lib/server-utils";
+import { deleteQuestion, updateQuestion } from "@/lib/server-utils";
 import { useRouter } from "next/navigation";
 import { MblxQuestions } from "@prisma/client";
+import DatabaseRowDelete from "./database-row-delete";
 
 type Refs = {
     [key: string]: HTMLTextAreaElement | null;
@@ -18,6 +19,7 @@ type TDatabaseRowProps = {
 export default function DatabaseRow({ question }: TDatabaseRowProps) {
     const [isEditable, setIsEditable] = useState(false);
     const [rows, setRows] = useState(1);
+    const [isDeleteActive, setIsDeleteActive] = useState(false);
     const textareaRefs = useRef<Refs>({});
     const router = useRouter();
     const handleUpdateQuestion = async (
@@ -27,6 +29,10 @@ export default function DatabaseRow({ question }: TDatabaseRowProps) {
     ) => {
         await updateQuestion(id, question, answer);
         router.refresh();
+    };
+
+    const handleDeleteQuestion = async (id: number) => {
+        await deleteQuestion(id);
     };
 
     const setRef = (key: string) => (el: HTMLTextAreaElement | null) => {
@@ -63,56 +69,72 @@ export default function DatabaseRow({ question }: TDatabaseRowProps) {
     }, [isEditable]);
 
     return (
-        <div className="flex flex-col lg:flex-row lg:items-center px-3 even:bg-purple-200 odd:bg-purple-100 basis-12 w-full border-2 border-purple-400 rounded-md">
-            <div className="flex items-center justify-center basis-12 p-2 font-bold">
-                {question.id}
-            </div>
-
-            <div className="lg:w-[65%] w-full p-2">
-                <p className="text-base lg:hidden font-bold">Question:</p>
-                {isEditable ? (
-                    <textarea
-                        ref={setRef("question")}
-                        rows={rows}
-                        spellCheck={false}
-                        className="w-full h-full resize-none bg-inherit border-0 focus:border-0 focus:outline-none"
-                        defaultValue={question.question}
-                    ></textarea>
-                ) : (
-                    question.question
-                )}
-            </div>
-            <div className="lg:w-[35%] w-full p-2">
-                <p className="text-base lg:hidden font-bold">Answer:</p>
-                {isEditable ? (
-                    <textarea
-                        ref={setRef("answer")}
-                        rows={rows}
-                        spellCheck={false}
-                        className="w-full h-full resize-none bg-inherit focus:border-0 focus:outline-none flex items-center"
-                        defaultValue={question.answer}
-                    ></textarea>
-                ) : (
-                    question.answer
-                )}
-            </div>
-            <div className="flex justify-center items-center basis-16 p-2">
-                {" "}
-                <Button
-                    onClick={handleInput}
-                    color={`bg-green-200 hover:bg-green-300 transition w-32 lg:w-auto `}
-                >
-                    <Pencil1Icon />
-                </Button>
-            </div>
-            <div className="lg:flex hidden justify-center items-center basis-16 p-2">
-                {" "}
-                <Button
-                    color={`bg-red-200 hover:bg-red-300 transition w-32 lg:w-auto`}
-                >
-                    <TrashIcon />
-                </Button>
-            </div>
-        </div>
+        <>
+            {!isDeleteActive && (
+                <div className="flex flex-col lg:flex-row lg:items-center px-3 even:bg-purple-200 odd:bg-purple-100 basis-12 w-full border-2 border-purple-400 rounded-md">
+                    <div className="flex items-center justify-center basis-12 p-2 font-bold">
+                        {question.id}
+                    </div>
+                    <div className="lg:w-[65%] w-full p-2">
+                        <p className="text-base lg:hidden font-bold">
+                            Question:
+                        </p>
+                        {isEditable ? (
+                            <textarea
+                                ref={setRef("question")}
+                                rows={rows}
+                                spellCheck={false}
+                                className="w-full h-full resize-none bg-inherit border-0 focus:border-0 focus:outline-none"
+                                defaultValue={question.question}
+                            ></textarea>
+                        ) : (
+                            question.question
+                        )}
+                    </div>
+                    <div className="lg:w-[35%] w-full p-2">
+                        <p className="text-base lg:hidden font-bold">Answer:</p>
+                        {isEditable ? (
+                            <textarea
+                                ref={setRef("answer")}
+                                rows={rows}
+                                spellCheck={false}
+                                className="w-full h-full resize-none bg-inherit focus:border-0 focus:outline-none flex items-center"
+                                defaultValue={question.answer}
+                            ></textarea>
+                        ) : (
+                            question.answer
+                        )}
+                    </div>
+                    <div className="flex justify-center items-center basis-16 p-2">
+                        {" "}
+                        <Button
+                            onClick={handleInput}
+                            color={`bg-green-200 hover:bg-green-300 transition w-32 lg:w-auto `}
+                        >
+                            <Pencil1Icon />
+                        </Button>
+                    </div>
+                    <div className="lg:flex hidden justify-center items-center basis-16 p-2">
+                        {" "}
+                        <Button
+                            onClick={() => setIsDeleteActive(true)}
+                            color={`bg-red-200 hover:bg-red-300 transition w-32 lg:w-auto`}
+                        >
+                            <TrashIcon />
+                        </Button>
+                    </div>
+                </div>
+            )}
+            {isDeleteActive && (
+                <DatabaseRowDelete
+                    onOk={() => {
+                        handleDeleteQuestion(question.id);
+                        setIsDeleteActive(false);
+                        router.refresh();
+                    }}
+                    onCancel={() => setIsDeleteActive(false)}
+                />
+            )}
+        </>
     );
 }
