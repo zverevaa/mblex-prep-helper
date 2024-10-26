@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Button from "./button";
 import { deleteQuestion, updateQuestion } from "@/lib/server-utils";
 import { useRouter } from "next/navigation";
-import { MblxQuestions } from "@prisma/client";
+import { MblexQuestions } from "@prisma/client";
 import DatabaseRowDelete from "./database-row-delete";
 
 type Refs = {
@@ -13,7 +13,7 @@ type Refs = {
 };
 
 type TDatabaseRowProps = {
-    question: MblxQuestions;
+    question: MblexQuestions;
 };
 
 export default function DatabaseRow({ question }: TDatabaseRowProps) {

@@ -1,4 +1,4 @@
-import { MblxQuestions } from "@prisma/client";
+import { MblexQuestions } from "@prisma/client";
 import Question from "./question";
 import { getQuestions } from "@/lib/server-utils";
 import ButtonWrapper from "./button-wrapper";
@@ -8,7 +8,7 @@ type TDataFetcherProps = {
 };
 
 export default async function DataFetcher({ amount }: TDataFetcherProps) {
-    const questions: MblxQuestions[] = await getQuestions(amount);
+    const questions: MblexQuestions[] = await getQuestions(amount);
     return (
         <div className="flex flex-col gap-2">
             {questions.map((q) => (

@@ -1,9 +1,10 @@
 "use server";
-import prisma from "./db";
+
+import { prisma } from "./db";
 
 //Fetches random questions
 export const getQuestions = async (amount: number) => {
-    const questions = await prisma.mblxQuestions.findManyRandom(amount, {
+    const questions = await prisma.mblexQuestions.findManyRandom(amount, {
         select: {
             question: true,
             answer: true,
@@ -16,19 +17,19 @@ export const getQuestions = async (amount: number) => {
 
 //Fetches all questions
 export const getAllQuestions = async (page = 1) => {
-    const questions = await prisma.mblxQuestions.findMany({
+    const questions = await prisma.mblexQuestions.findMany({
         orderBy: {
             id: "desc",
         },
         take: 10,
         skip: (page - 1) * 10,
     });
-    const totalCount = await prisma.mblxQuestions.count();
+    const totalCount = await prisma.mblexQuestions.count();
     return { questions, totalCount };
 };
 
 export const addQuestion = async (formData: FormData) => {
-    await prisma.mblxQuestions.create({
+    await prisma.mblexQuestions.create({
         data: {
             question: formData.get("question") as string,
             answer: formData.get("answer") as string,
@@ -41,7 +42,7 @@ export const updateQuestion = async (
     question: string,
     answer: string
 ) => {
-    await prisma.mblxQuestions.update({
+    await prisma.mblexQuestions.update({
         where: {
             id: id,
         },
@@ -53,7 +54,7 @@ export const updateQuestion = async (
 };
 
 export const deleteQuestion = async (id: number) => {
-    await prisma.mblxQuestions.delete({
+    await prisma.mblexQuestions.delete({
         where: {
             id: id,
         },

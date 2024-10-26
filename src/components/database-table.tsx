@@ -1,8 +1,8 @@
-import { MblxQuestions } from "@prisma/client";
+import { MblexQuestions } from "@prisma/client";
 import DatabaseRow from "./database-row";
 
 type TDatabaseTableProps = {
-    questions: MblxQuestions[];
+    questions: MblexQuestions[];
 };
 
 export default async function DatabaseTable({

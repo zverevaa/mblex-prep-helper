@@ -1,15 +1,16 @@
 import { PrismaClient } from "@prisma/client";
-// import { PrismaLibSQL } from "@prisma/adapter-libsql";
+import { PrismaLibSQL } from "@prisma/adapter-libsql";
+import { createClient } from "@libsql/client";
 
-// const libsql = createClient({
-//     url: `${process.env.TURSO_DATABASE_URL}`,
-//     authToken: `${process.env.TURSO_AUTH_TOKEN}`,
-// });
+const libsql = createClient({
+    url: `${process.env.TURSO_DATABASE_URL}`,
+    authToken: `${process.env.TURSO_AUTH_TOKEN}`,
+});
 
-// const adapter = new PrismaLibSQL(libsql);
-// const prisma = new PrismaClient({ adapter });
+const adapter = new PrismaLibSQL(libsql);
+const prisma = new PrismaClient({ adapter });
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 const questions = [
     {
@@ -86,7 +87,7 @@ async function main() {
     console.log(`Start seeding ...`);
 
     for (const question of questions) {
-        const result = await prisma.mblxQuestions.upsert({
+        const result = await prisma.mblexQuestions.upsert({
             where: { id: question.id },
             update: {},
             create: question,
