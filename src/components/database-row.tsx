@@ -27,8 +27,9 @@ export default function DatabaseRow({ question }: TDatabaseRowProps) {
         question: string,
         answer: string
     ) => {
-        await updateQuestion(id, question, answer);
-        router.refresh();
+        await updateQuestion(id, question, answer).then(() => router.refresh());
+
+        console.log("refreshed");
     };
 
     const handleDeleteQuestion = async (id: number) => {
